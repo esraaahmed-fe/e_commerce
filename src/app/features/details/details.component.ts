@@ -15,14 +15,8 @@ export class DetailsComponent implements OnInit  {
 productId:string|null = null;
 productDetailsData:WritableSignal<ProductDetails>=signal<ProductDetails>({} as ProductDetails)
 ngOnInit(): void {
-  // this.getProuductId();
-  // this.getSpecificProuductData();
-    this.activatedRoute.paramMap.subscribe({
-    next: (urlparams) => {
-      this.productId = urlparams.get('id');
-      this.getSpecificProuductData(); // ← جوا الـ subscribe
-    }
-  });
+  this.getProuductId();
+  this.getSpecificProuductData();
 }
 getProuductId():void{
 
