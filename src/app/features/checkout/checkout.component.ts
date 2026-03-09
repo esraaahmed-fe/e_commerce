@@ -76,7 +76,7 @@ this.cartService.payWithCash(this.cartId,this.checkOutForm.value).subscribe({
 
 if(res.status==='success'){
     this.toastrService.success('paying cash','Fresh Cart!');
-// this.  showSuccess();
+
 
 this.router.navigate(['allorders'])
 
@@ -91,8 +91,6 @@ this.router.navigate(['allorders'])
 
   }
 }
-  // showSuccess() {
 
-  // }
 
 }
