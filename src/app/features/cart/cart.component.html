@@ -1,0 +1,67 @@
+<section class="bg-gray-100 p-4">
+<div class="container">
+<div class="parent grid sm:grid-cols-12 gap-10">
+  <div class="col-span-8">
+    <div class="bg-gray-200 p-4 shadow rounded-lg">
+      <div class="flex flex-wrap gap-3 mb-3">
+        <h1>{{"cart"|translate}}</h1>
+@if(cartDetailsData().products){
+          <span>{{cartDetailsData().products.length}} {{"items"|translate}}</span>
+}
+
+      </div>
+    @for(item of cartDetailsData().products; track item.product._id){
+        <div class="parent grid gap-2 sm:grid-cols-12 bg-light p-4 shadow rounded-lg mb-3 ">
+        <div class="col-span-1">
+            <div>
+              <div>
+              <img class="w-full" [src]="item.product.imageCover" [alt]="item.product.title">
+              </div>
+            </div>
+          </div>
+
+        <div class="col-span-11">
+          <div class="flex flex-wrap justify-between items-center ">
+         <div>
+             <h3 class="pb-3">{{item.product.title}}</h3>
+         <div class="flex flex-erap gap-3">
+             <div class="flex flex-wrap space-x-3 bg-gray-200 border rounded-md py-1 px-3">
+              <button (click)="updateProductCount(item.product._id,item.count -1)" class="cursor-pointer">
+                <i class="fas fa-minus"></i>
+              </button >
+              <span>{{item.count}}</span>
+               <button (click)="updateProductCount(item.product._id,item.count +1)" class="cursor-pointerks">
+                <i class="fas fa-plus"></i>
+              </button >
+            </div>
+
+              <button (click)="removeProductItemFromCart(item.product._id)" class="cursor-pointer">
+                <i class="fas fa-trash-can"></i>
+              </button>
+
+         </div>
+         </div>
+         <span>{{item.price*item.count}} {{"EGP"|translate}} </span>
+          </div>
+        </div>
+      </div>
+    }
+    @empty {
+      <h2>{{"no data found"|translate}} ....</h2>
+    }
+    </div>
+  </div>
+  <div class="col-span-4">
+    <div class="bg-gray-200 shadow rounded-lg p-4 border border-gray-200">
+<h2>{{"order summary"|translate}}</h2>
+<div class="flex flex-wrap justify-between items-center py-3">
+  <span>{{"price"|translate}}</span>
+  <span>{{cartDetailsData().totalCartPrice}} EGP</span>
+</div>
+<button  [disabled]="!cartDetailsData()?.products?.length"
+  (click)="goToCheckOut()" class="btn-main w-full">{{"go to checkout"|translate}}</button>
+    </div>
+  </div>
+</div>
+</div>
+</section >

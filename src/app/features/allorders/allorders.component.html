@@ -1,0 +1,49 @@
+<section class="py-16">
+  <div class="container">
+    @for (order of allOrdersData(); track order._id) {
+      <div class="card flex flex-wrap justify-between mb-4 p-4">
+        <div>
+          <h1 class="text-xl font-bold">Order: #{{ order.id }}</h1>
+          <p>Date: {{ order.createdAt | date:'longDate' }}</p>
+          <p>Total: ${{ order.totalOrderPrice }}</p>
+          <p>Payment: {{ order.paymentMethodType }}</p>
+          <p>
+            Status:
+            <button
+              class="btn-main"
+              [class.bg-purple-500]="order.isDelivered"
+              [class.bg-purple-400]="!order.isDelivered"
+            >
+              {{ order.isDelivered ? 'Delivered' : 'Pending' }}
+            </button>
+          </p>
+          <p>
+            Paid:
+            <span [class.text-black]="order.isPaid" [class.text-black]="!order.isPaid">
+              {{ order.isPaid ? 'Yes' : 'No' }}
+            </span>
+          </p>
+        </div>
+
+
+        <div class="flex flex-wrap items-center gap-2">
+          @for (item of order.cartItems; track item._id) {
+            <div class="text-center">
+              <img
+                [src]="item.product.imageCover"
+                [alt]="item.product.title"
+                class="w-16 h-16 object-cover rounded"
+              />
+
+              <p class="text-sm">x{{ item.count }}</p>
+            </div>
+          }
+        </div>
+
+
+      </div>
+    } @empty {
+      <p class="text-center text-gray-500">No orders found.</p>
+    }
+  </div>
+</section>

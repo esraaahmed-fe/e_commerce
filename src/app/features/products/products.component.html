@@ -1,0 +1,27 @@
+
+
+
+<section class="py-8 ">
+  <div class="container xl:w-[95%]">
+<div class="my-6">
+ <input  type="search" class="block w-full rounded-lg mt-7 md:w-3/4 mx-auto focus:ring-purple-600 focus:border-purple-600"placeholder="search with product title" [(ngModel)]="text"/>
+</div>
+ <h2 class="text-2xl text-center text-purple-600 font-medium  "> {{"products"|translate}}</h2>
+<div class="parent mt-6 grid gap-3  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+@for(product of productList()|paginate:pagination |search:text; track product.id ){
+<app-card [cardproduct]="product"></app-card>
+}
+  </div>
+
+ <div class="mt-6 flex flex-wrap justify-center">
+   <pagination-controls  id="products"
+                     (pageChange)="pageChanged($event)"
+              >
+</pagination-controls>
+ </div>
+   </div>
+</section>
+
+
+
+
