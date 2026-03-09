@@ -1,6 +1,6 @@
 
   <div  class="card overflow-hidden flex flex-col h-full group/card">
-<div [routerLink]="['/details',cardproduct.id] " class="cursor-pointer">
+<div [routerLink]="['/details',cardproduct.slug,cardproduct.id] " class="cursor-pointer">
       <img [src]="cardproduct.imageCover" [alt]="cardproduct.title" [title]="cardproduct.title">
 <div class="flex flex-col h-full">
   <h3 class="text-sm text-purple-600">{{cardproduct.category.name}}</h3>
